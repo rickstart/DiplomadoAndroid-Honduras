@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">HelloWorld</string>
+    <string name="hello_world">Hello World Ricardo</string>
+    <string name="touring_test">Touring Test!!+*</string>
+    <string name="mario">Mario Romero</string>
+    <string name="miguel">Miguel Calderon</string>
+    <string name="ivan">Ivan Valle</string>
+    <string name="eduardo">Eduardo Espino</string>
+    <string name="osman">Osman Nuñez</string>
+    <string name="maurin">Maurin Alcantara</string>
+    <string name="olvin">Olvin Garcia</string>
+    <string name="ricardo">Ricardo Centeno</string>
+</resources>
