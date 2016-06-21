@@ -13,8 +13,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnAC, btnSign, btnPercent, btnDivision, btnMultiply;
     private Button btnSubstraction, btnPlus, btnEqual, btnDot;
     private Button btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix, btnSeven, btnEight, btnNine, btnZero;
+    private Double oper1=0.0, oper2, result;
     private Boolean flagOper = false;
-    private Double oper1 = 0.0;
+    private final static int SUM=1;
+    private final static int MULTIPLY=2;
+    private final static int DIVISION=3;
+    private final static int SUBSTRACTION=4;
+    private final static int PERCENT=5;
+    private int typeOper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,40 +69,124 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void setOper(){
-        Double number = Double.parseDouble(txtResult.getText().toString());
-        if(number != 0.0 && oper1 == 0.0){
-            oper1 = number;
-        }else if( oper1!=0.0 && flagOper ){
-            oper1 = oper1 + number;
-            txtResult.setText(oper1+"");
+    public String formatResult(Double result){
+        String strResult = Double.toString(result);
+        String number[] = strResult.split("\\.");
+
+        if(number[1].equals("0")){
+            return number[0];
+        }else{
+            return strResult;
         }
+
+    }
+
+    public Double operation(int typeOper, double oper1, double oper2){
+        Double result = 0.0;
+        switch (typeOper){
+            case SUM:
+                result = oper1 + oper2;
+                break;
+            case SUBSTRACTION:
+                result = oper1 - oper2;
+                break;
+            case MULTIPLY:
+                result = oper1 * oper2;
+                break;
+            case DIVISION:
+                result = oper1 / oper2;
+                break;
+        }
+        return result;
+    }
+
+    public void setOper(){
+        Double number = Double.parseDouble(txtResult.getText().toString());
+        if(number!=0.0 && oper1==0.0){
+            oper1 = number;
+        }else if(oper1!=0.0 && flagOper){
+            oper1 = operation(typeOper, oper1, number);
+            txtResult.setText(formatResult(oper1));
+        }
+        flagOper = false;
     }
     @Override
     public void onClick(View v) {
-        Button btnTemp = (Button) v;
-        String strBtn = btnTemp.getText().toString();
         Double number = 0.0;
-        switch (v.getId()){
+
+        switch (v.getId()) {
+
+            case R.id.btnSubstraction:
+                setOper();
+                typeOper = SUBSTRACTION;
+                break;
+
             case R.id.btnPlus:
                 setOper();
+                typeOper = SUM;
+                break;
+            case R.id.btnDivision:
+                setOper();
+                typeOper = DIVISION;
+                break;
+            case R.id.btnMultiply:
+                setOper();
+                typeOper = MULTIPLY;
+                break;
+            case R.id.btnAC:
+                txtResult.setText("0");
+                oper1 = 0.0;
+                flagOper = false;
+                break;
+
+            case R.id.btnEqual:
+                if(oper1!=0.0 && flagOper){
+                    number = Double.parseDouble(txtResult.getText().toString());
+                    oper1 = operation(typeOper, oper1, number);
+                    txtResult.setText(formatResult(oper1));
+                    flagOper = false;
+                }
+
+                break;
+
+            case R.id.btnPercent:
+                number = Double.parseDouble(txtResult.getText().toString());
+                if(number!=0.0) {
+                    txtResult.setText(formatResult(number/100));
+                }
+                break;
+
+            case R.id.btnSign:
+                String result = txtResult.getText().toString();
+                if(!result.equals("0")){
+                    if(result.contains("-")){
+                        result =result.substring(1,result.length());
+                    }else {
+                        result="-"+result;
+                    }
+                    txtResult.setText(result);
+                }
+
                 break;
             default:
+                Button btnTemp = (Button) v;
+                String text = btnTemp.getText().toString();
                 number = Double.parseDouble(txtResult.getText().toString());
-                if((number != 0.0 && flagOper) ||txtResult.getText().toString().equals("0.") ){
-                    if(strBtn.equals(".")){
+
+                if((number!=0.0 && flagOper) || txtResult.getText().toString().equals("0.")) {
+                    if(text.equals(".")){
                         String strResult = txtResult.getText().toString();
-                        if(!strResult.contains(".")){
-                            txtResult.append(strBtn);
-                        }
-                    }else{
-                        txtResult.append(strBtn);
+                        if(!strResult.contains("."))
+                            txtResult.append(text);
+                    }else {
+                        txtResult.append(text);
                     }
                 }else {
-                    if(strBtn.equals(".")){
-                        txtResult.setText("0"+strBtn);
+
+                    if(text.equals(".")){
+                        txtResult.setText("0"+text);
                     }else {
-                        txtResult.setText(strBtn);
+                        txtResult.setText(text);
                     }
                     flagOper = true;
                 }
