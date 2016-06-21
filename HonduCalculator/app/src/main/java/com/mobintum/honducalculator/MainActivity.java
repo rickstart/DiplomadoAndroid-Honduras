@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnAC, btnSign, btnPercent, btnDivision, btnMultiply;
     private Button btnSubstraction, btnPlus, btnEqual, btnDot;
     private Button btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix, btnSeven, btnEight, btnNine, btnZero;
-    private Double oper1=0.0, oper2, result;
+    private Double oper1=0.0;
     private Boolean flagOper = false;
     private final static int SUM=1;
     private final static int MULTIPLY=2;
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String text = btnTemp.getText().toString();
                 number = Double.parseDouble(txtResult.getText().toString());
 
-                if((number!=0.0 && flagOper) || txtResult.getText().toString().equals("0.")) {
+                if(flagOper || txtResult.getText().toString().equals("0.")) {
                     if(text.equals(".")){
                         String strResult = txtResult.getText().toString();
                         if(!strResult.contains("."))
@@ -182,7 +182,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         txtResult.append(text);
                     }
                 }else {
-
                     if(text.equals(".")){
                         txtResult.setText("0"+text);
                     }else {
