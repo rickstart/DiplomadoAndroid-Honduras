@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/font_title"
+        android:padding="@dimen/padding_small"
+        android:id="@+id/txtFullName"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/font_normal"
+        android:padding="@dimen/padding_small"
+        android:layout_below="@+id/txtFullName"
+        android:id="@+id/txtBirthdate"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/font_normal"
+        android:padding="@dimen/padding_small"
+        android:layout_toRightOf="@+id/txtBirthdate"
+        android:layout_below="@+id/txtFullName"
+        android:id="@+id/txtGender"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:textSize="@dimen/font_normal"
+        android:padding="@dimen/padding_small"
+        android:layout_below="@+id/txtGender"
+        android:id="@+id/txtNationality"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/font_normal"
+        android:padding="@dimen/padding_small"
+        android:layout_below="@+id/txtNationality"
+        android:id="@+id/txtDocumentId"/>
+
+</RelativeLayout>
