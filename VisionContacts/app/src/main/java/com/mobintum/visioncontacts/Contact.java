@@ -95,12 +95,13 @@ public class Contact {
     public static ArrayList<Contact> getContacts(){
         ArrayList<Contact> contacts = new ArrayList<>();
         contacts.add( new Contact("Ricardo Centeno", "http://www.mobintum.com", "(521) 5514382887", "ricardo.centeno@mobintum.com", "rickstart" , "ricardo.centenolugo", "@rickstart", "https://avatars2.githubusercontent.com/u/3117867?v=3&s=460"));
-        contacts.add( new Contact("Ivan Valle", "http://www.grupovision.org", "+504 98090157", "ivalle@grupovision.org", "ivanvallehn" , "ivalle", "@ivanvallehn", "https://scontent-mia1-1.xx.fbcdn.net/v/t1.0-9/12662701_1000123373393170_6257234275068153647_n.jpg?oh=e573bea5de2eac8a43bafc5b8e587fe9&oe=58017A84"));
+        contacts.add( new Contact("Ivan Valle", "http://www.grupovision.org", "+504 98090157", "ivalle@grupovision.org", "ivanvallehn" , "ivalle", "@ivanvallehn", "https://scontent-mia1-1.xx.fbcdn.net/v/t1.0-9/1929460_8643523927_7377_n.jpg?oh=0db68159e27258216d0d28b949e24e17&oe=58040F12"));
         contacts.add( new Contact("Maurin Alcántara","http://www.grupovision.org", "89745511", "malcantara@gmail.com","MaurinAlcantara","MAlcantaraf","malcantara90","https://scontent-mia1-1.xx.fbcdn.net/v/t1.0-9/13344649_1357732067573917_2015319381161678062_n.jpg?oh=b1a54448cb76c70a89aa3f89776acb39&oe=58070457"));
         contacts.add( new Contact("Olvin A. Garcia","http:////www.grupovision.org", "+504 9512-0158", "agarcia@grupovision.org","olvingarcia","olvinalexander2a","olvingarcia2a","https://avatars3.githubusercontent.com/u/6761067?v=3&s=460"));
         contacts.add( new Contact("Miguel Calderon","http:////www.grupovision.org", "+504 9596-8431",       "acalderon@grupovision.org","mcalderon022","XXX666","zzzz777","https://scontent-mia1-1.xx.fbcdn.net/v/t1.0-9/10384673_1512308849031639_3624761729857182957_n.jpg?oh=5bcf55f06e0a03fdd1da24e98ebbce2d&oe=57FE9CE2"));
         contacts.add( new Contact("Osman Nuñez", "http://www.grupovision.org", "(504) 33662046", "onunez@grupovision.org", "osmanu71" , "osmanu71", "@osmanu71", "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c0.0.160.160/p160x160/1904140_618424001545396_1679004552_n.jpg?oh=f665a2cdaf4ee2c686453e454da441da&oe=57F8E55B&__gda__=1472411336_d81ca76986d2df160458c6b8e3df748c"));
         contacts.add( new Contact("Mario Romero", "http://www.grupovision.org", "22454002", "mvalladares@grupovision@org", "mariova777", "mario.va777", "mario", "http://4.bp.blogspot.com/-TySxIjecqxM/UycmsFOfAfI/AAAAAAAAAAk/CYllnrMve1E/s1600/DSC07860.JPG"));
+        contacts.add( new Contact("Eduardo Espino","Grupo Vision","99334363","eespino@grupovision.org","eduardoespino","No tengo","ikaro_hp","https://avatars0.githubusercontent.com/u/20059600?v=3&u=703970eee66fce20cd64b89f87adfc553780f1e9&s=140"));
         return contacts;
     }
 }
