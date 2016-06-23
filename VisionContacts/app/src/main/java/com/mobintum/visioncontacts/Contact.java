@@ -100,6 +100,7 @@ public class Contact {
         contacts.add( new Contact("Olvin A. Garcia","http:////www.grupovision.org", "+504 9512-0158", "agarcia@grupovision.org","olvingarcia","olvinalexander2a","olvingarcia2a","https://avatars3.githubusercontent.com/u/6761067?v=3&s=460"));
         contacts.add( new Contact("Miguel Calderon","http:////www.grupovision.org", "+504 9596-8431",       "acalderon@grupovision.org","mcalderon022","XXX666","zzzz777","https://www.facebook.com/photo.php?fbid=1512308849031639&set=a.1485661858363005.1073741826.100007576158366&type=3"));
         contacts.add( new Contact("Osman Nuñez", "http://www.grupovision.org", "(504) 33662046", "onunez@grupovision.org", "osmanu71" , "osmanu71", "@osmanu71", "https://www.facebook.com/photo.php?fbid=618424001545396&set=a.115116515209483.24000.100001334046916&type=3&theater"));
+        contacts.add( new Contact("Mario Romero", "http://www.grupovision.org", "22454002", "mvalladares@grupovision@org", "mariova777", "mario.va777", "mario", "http://4.bp.blogspot.com/-TySxIjecqxM/UycmsFOfAfI/AAAAAAAAAAk/CYllnrMve1E/s1600/DSC07860.JPG"));
         return contacts;
     }
 }
