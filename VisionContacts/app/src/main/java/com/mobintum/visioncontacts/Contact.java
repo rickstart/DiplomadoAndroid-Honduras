@@ -1,6 +1,6 @@
 package com.mobintum.visioncontacts;
 
-
+import java.util.ArrayList;
 
 /**
  * Created by Rick on 22/06/16.
@@ -90,5 +90,16 @@ public class Contact {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public static ArrayList<Contact> getContacts(){
+        ArrayList<Contact> contacts = new ArrayList<>();
+        contacts.add( new Contact("Ricardo Centeno", "http://www.mobintum.com", "(521) 5514382887", "ricardo.centeno@mobintum.com", "rickstart" , "ricardo.centenolugo", "@rickstart", "https://avatars2.githubusercontent.com/u/3117867?v=3&s=460"));
+        contacts.add( new Contact("Ivan Valle", "http://www.grupovision.org", "+504 98090157", "ivalle@grupovision.org", "ivanvallehn" , "ivalle", "@ivanvallehn", "https://www.facebook.com/photo.php?fbid=10153252661638928&set=t.798028927&type=3&theater"));
+        contacts.add( new Contact("Maurin Alcántara","http://www.grupovision.org", "89745511", "malcantara@gmail.com","MaurinAlcantara","MAlcantaraf","malcantara90","https://www.facebook.com/282987965048338/photos/t.1630209199/1357732067573917/?type=3&theater"));
+        contacts.add( new Contact("Olvin A. Garcia","http:////www.grupovision.org", "+504 9512-0158", "agarcia@grupovision.org","olvingarcia","olvinalexander2a","olvingarcia2a","https://avatars3.githubusercontent.com/u/6761067?v=3&s=460"));
+        contacts.add( new Contact("Miguel Calderon","http:////www.grupovision.org", "+504 9596-8431",       "acalderon@grupovision.org","mcalderon022","XXX666","zzzz777","https://www.facebook.com/photo.php?fbid=1512308849031639&set=a.1485661858363005.1073741826.100007576158366&type=3"));
+        contacts.add( new Contact("Osman Nuñez", "http://www.grupovision.org", "(504) 33662046", "onunez@grupovision.org", "osmanu71" , "osmanu71", "@osmanu71", "https://www.facebook.com/photo.php?fbid=618424001545396&set=a.115116515209483.24000.100001334046916&type=3&theater"));
+        return contacts;
     }
 }

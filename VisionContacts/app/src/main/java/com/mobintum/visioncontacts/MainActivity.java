@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Contact contact = new Contact("Ricardo Centeno", "http://www.mobintum.com", "(521) 5514382887", "ricardo.centeno@mobintum.com", "rickstart" , "ricardo.centenolugo", "@rickstart", "me") ;
+    private Contact contact = new Contact("Ricardo Centeno", "http://www.mobintum.com", "(521) 5514382887", "ricardo.centeno@mobintum.com", "rickstart" , "ricardo.centenolugo", "@rickstart", "https://avatars2.githubusercontent.com/u/3117867?v=3&s=460");
     private TextView txtName, txtCompany, txtPhone, txtEmail, txtGithub, txtFacebook, txtTwitter;
     private ImageButton btnPhone, btnEmail, btnGithub, btnFacebook, btnTwitter;
     private ImageView imgPhoto;
