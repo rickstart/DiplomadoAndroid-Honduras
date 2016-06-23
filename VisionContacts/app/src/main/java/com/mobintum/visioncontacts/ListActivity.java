@@ -1,10 +1,15 @@
 package com.mobintum.visioncontacts;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class ListActivity extends AppCompatActivity {
+import java.io.Serializable;
+
+public class ListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private ListView listContacts;
     @Override
@@ -14,5 +19,14 @@ public class ListActivity extends AppCompatActivity {
         listContacts = (ListView) findViewById(R.id.listContacts);
         ContactAdapter adapter = new ContactAdapter(getApplicationContext(),R.layout.list_item_contact,Contact.getContacts());
         listContacts.setAdapter(adapter);
+        listContacts.setOnItemClickListener(this);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(ListActivity.this, MainActivity.class);
+        intent.putExtra("contact", (Serializable) Contact.getContacts().get(position));
+        startActivity(intent);
     }
 }

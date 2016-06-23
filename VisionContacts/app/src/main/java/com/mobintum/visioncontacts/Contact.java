@@ -1,12 +1,13 @@
 package com.mobintum.visioncontacts;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Rick on 22/06/16.
  * email: ricardo.centeno@mobintum.com
  */
-public class Contact {
+public class Contact implements Serializable {
     
     private String name;
     private String company;

@@ -15,9 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Contact contact = new Contact("Ricardo Centeno", "http://www.mobintum.com", "(521) 5514382887", "ricardo.centeno@mobintum.com", "rickstart" , "ricardo.centenolugo", "@rickstart", "https://avatars2.githubusercontent.com/u/3117867?v=3&s=460");
+    private Contact contact;
     private TextView txtName, txtCompany, txtPhone, txtEmail, txtGithub, txtFacebook, txtTwitter;
     private ImageButton btnPhone, btnEmail, btnGithub, btnFacebook, btnTwitter;
     private ImageView imgPhoto;
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnFacebook.setOnClickListener(this);
         txtCompany.setOnClickListener(this);
 
+        this.contact = (Contact) getIntent().getExtras().getSerializable("contact");
+
 
         txtName.setText(contact.getName());
         txtCompany.setText(contact.getCompany());
@@ -55,10 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtTwitter.setText(contact.getTwitter());
         txtGithub.setText(contact.getGithub());
 
-        Resources resources = getApplicationContext().getResources();
-        final int resourceId = resources.getIdentifier(contact.getPhoto(), "drawable",
-                getApplicationContext().getPackageName());
-        imgPhoto.setImageDrawable(resources.getDrawable(resourceId));
+        Picasso.with(getApplicationContext()).load(contact.getPhoto()).into(imgPhoto);
 
 
 
