@@ -7,6 +7,8 @@
     <dimen name="padding_small">10dp</dimen>
     <dimen name="font_normal">12sp</dimen>
     <dimen name="height_border">2dp</dimen>
-    <dimen name="height_publisher">35dp</dimen>
+    <dimen name="height_publisher">50dp</dimen>
     <dimen name="font_small">10sp</dimen>
+    <dimen name="elevation_card">4dp</dimen>
+    <dimen name="radius_small">8dp</dimen>
 </resources>
