@@ -7,4 +7,6 @@
     <dimen name="font_normal">15sp</dimen>
     <dimen name="font_medium">20sp</dimen>
     <dimen name="size_fox">40dp</dimen>
+    <dimen name="size_player">150dp</dimen>
+    <dimen name="ball">50dp</dimen>
 </resources>

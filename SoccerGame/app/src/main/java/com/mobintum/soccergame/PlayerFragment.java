@@ -1,6 +1,8 @@
 package com.mobintum.soccergame;
 
 
+import android.content.Context;
+import android.graphics.ColorFilter;
 import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.support.annotation.Nullable;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.Random;
 
 
 /**
@@ -25,6 +28,15 @@ public class PlayerFragment extends Fragment {
 
     private TextView txtName;
     private ImageView imgTShirt;
+    private ImageView imgBall;
+
+    private CallbacksFragment mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mListener = (CallbacksFragment) context;
+    }
 
     public static PlayerFragment newInstance(String name, int color){
         PlayerFragment fragment = new PlayerFragment();
@@ -52,8 +64,36 @@ public class PlayerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_player, container, false);
-
+        txtName = (TextView) view.findViewById(R.id.txtName);
+        imgTShirt = (ImageView) view.findViewById(R.id.imgTShirt);
+        imgBall = (ImageView) view.findViewById(R.id.imgBall);
+        txtName.setText(name);
+        imgTShirt.setColorFilter(getActivity().getResources().getColor(color));
+        imgBall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               mListener.pass(getRandomPosition());
+            }
+        });
         return view;
+    }
+
+    public void showBall(boolean show){
+        if(show)
+            imgBall.setVisibility(View.VISIBLE);
+        else
+            imgBall.setVisibility(View.GONE);
+
+    }
+
+    public static int getRandomPosition(){
+        Random r = new Random();
+        int result = r.nextInt(5-0) + 0;
+        return result;
+    }
+
+    public interface CallbacksFragment{
+        public void pass(int position);
     }
 
 }
