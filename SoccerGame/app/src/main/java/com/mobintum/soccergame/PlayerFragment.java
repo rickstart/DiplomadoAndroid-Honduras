@@ -72,7 +72,7 @@ public class PlayerFragment extends Fragment {
         imgBall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               mListener.pass(getRandomPosition());
+               mListener.pass(getRandomPosition(0,6));
             }
         });
         return view;
@@ -86,9 +86,9 @@ public class PlayerFragment extends Fragment {
 
     }
 
-    public static int getRandomPosition(){
+    public static int getRandomPosition(int a, int b){
         Random r = new Random();
-        int result = r.nextInt(5-0) + 0;
+        int result = r.nextInt(b-a) + a;
         return result;
     }
 
