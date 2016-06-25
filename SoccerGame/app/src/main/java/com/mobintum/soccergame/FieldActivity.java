@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class FieldActivity extends AppCompatActivity implements PlayerFragment.CallbacksFragment {
-
+    private FragmentManager dtOsman;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +17,8 @@ public class FieldActivity extends AppCompatActivity implements PlayerFragment.C
         PlayerFragment player4 = PlayerFragment.newInstance("Ivan",R.color.white);
         PlayerFragment player5 = PlayerFragment.newInstance("Eduardo",R.color.white);
         PlayerFragment player6 = PlayerFragment.newInstance("Olvin",R.color.white);
-        FragmentManager dtOsman = getSupportFragmentManager();
+
+        dtOsman = getSupportFragmentManager();
         FragmentTransaction ft = dtOsman.beginTransaction();
         ft.add(R.id.goalKeeperSpace1,player1,"Miguel");
         ft.add(R.id.player1,player2,"Mario");
@@ -29,11 +30,19 @@ public class FieldActivity extends AppCompatActivity implements PlayerFragment.C
 
 
 
-
     }
 
     @Override
-    public void pass() {
+    protected void onStart() {
+        super.onStart();
+        dtOsman.executePendingTransactions();
+        PlayerFragment fragment = (PlayerFragment) dtOsman.getFragments().get(PlayerFragment.getRandomPosition());
+        fragment.showBall(true);
+    }
 
+    @Override
+    public void pass(int position) {
+        PlayerFragment playerFragment = (PlayerFragment) dtOsman.getFragments().get(position);
+        playerFragment.showBall(true);
     }
 }
