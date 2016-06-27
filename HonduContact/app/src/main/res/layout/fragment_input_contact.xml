@@ -79,7 +79,8 @@
                 <Spinner
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:id="@+id/spinTypeNumber"/>
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -88,7 +89,42 @@
                     android:inputType="phone"
                     android:id="@+id/etNumber"/>
             </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:inputType="textEmailAddress"
+                android:drawableLeft="@drawable/ic_email"
+                android:id="@+id/etEmail" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/github"
+                android:inputType="text"
+                android:drawableLeft="@drawable/ic_github"
+                android:id="@+id/etGithub"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/facebook"
+                android:inputType="text"
+                android:drawableLeft="@drawable/ic_facebook"
+                android:id="@+id/etFacebook"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/twitter"
+                android:inputType="text"
+                android:drawableLeft="@drawable/ic_twitter"
+                android:id="@+id/etTwitter"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/instagram"
+                android:inputType="text"
+                android:drawableLeft="@drawable/ic_instagram"
+                android:id="@+id/etInstagram"/>
+
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
