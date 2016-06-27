@@ -153,8 +153,8 @@ public class Contact implements Serializable {
     public static ArrayList<Contact> getContacts(Context context){
         ArrayList<Contact> contacts = new ArrayList<>();
         Cursor cursor = DatabaseAdapter.getDB(context).query(TABLE_NAME,null,null,null,null,null,null);
-        if(cursor!=null)
-            for(cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext()){
+        if(cursor!=null) {
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
                 Integer contactId = cursor.getInt(cursor.getColumnIndexOrThrow(CONTACT_ID));
                 String firstName = cursor.getString(cursor.getColumnIndexOrThrow(FIRST_NAME));
                 String lastName = cursor.getString(cursor.getColumnIndexOrThrow(LAST_NAME));
@@ -165,8 +165,10 @@ public class Contact implements Serializable {
                 String facebook = cursor.getString(cursor.getColumnIndexOrThrow(FACEBOOK));
                 String twitter = cursor.getString(cursor.getColumnIndexOrThrow(TWITTER));
                 String instagram = cursor.getString(cursor.getColumnIndexOrThrow(INSTAGRAM));
-                contacts.add(new Contact(contactId,firstName,lastName,pathPhoto,company,email,github,facebook,twitter,instagram));
+                contacts.add(new Contact(contactId, firstName, lastName, pathPhoto, company, email, github, facebook, twitter, instagram));
             }
+            cursor.close();
+        }
 
         return contacts;
 

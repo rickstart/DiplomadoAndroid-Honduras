@@ -80,6 +80,16 @@ public class ContactNumber {
     public static ArrayList<ContactNumber> getContactNumbers(Context context, int contactId){
         ArrayList<ContactNumber> contactNumbers = new ArrayList<>();
         Cursor cursor = DatabaseAdapter.getDB(context).query(TABLE_NAME,null,FK_CONTACT_ID+"="+contactId,null,null,null,null);
+        if (cursor!=null) {
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                Integer contactNumberId = cursor.getInt(cursor.getColumnIndexOrThrow(CONTACT_NUMBER_ID));
+                String number = cursor.getString(cursor.getColumnIndexOrThrow(NUMBER));
+                Integer fk_typeNumberId = cursor.getInt(cursor.getColumnIndexOrThrow(FK_TYPE_NUMBER_ID));
+                Integer fk_contactId = cursor.getInt(cursor.getColumnIndexOrThrow(FK_CONTACT_ID));
+                contactNumbers.add(new ContactNumber(contactNumberId, number, fk_typeNumberId, fk_contactId));
+            }
+            cursor.close();
+        }
 
         return contactNumbers;
 
