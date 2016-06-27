@@ -58,5 +58,24 @@ public class TypeNumber {
         }
         return typeNumbers;
     }
+
+    public static ArrayList<String> getTypeNumbersString(Context context){
+        ArrayList<String> typeNumbers = new ArrayList<>();
+        Cursor cursor = DatabaseAdapter.getDB(context).query(TABLE_NAME,null,null,null,null,null,null);
+        if(cursor!=null){
+            for (cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext()){
+                Integer typeNumberId = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE_NUMBER_ID));
+                String type = cursor.getString(cursor.getColumnIndexOrThrow(TYPE));
+                typeNumbers.add(type);
+            }
+            cursor.close();
+        }
+        return typeNumbers;
+    }
+
+    @Override
+    public String toString() {
+        return type;
+    }
 }
 

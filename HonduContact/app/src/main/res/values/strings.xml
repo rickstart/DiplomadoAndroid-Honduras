@@ -13,4 +13,8 @@
     <string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
     <string name="instagram">Instagram</string>
+    <string name="save">Save</string>
+    <string name="error_field">Mandatory Field</string>
+    <string name="save_success">Save Success :)</string>
+    <string name="failed_save">Failed Save :(</string>
 </resources>

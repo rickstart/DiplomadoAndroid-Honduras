@@ -55,6 +55,18 @@ public class Contact implements Serializable {
         this.instagram = instagram;
     }
 
+    public Contact(String firstName, String lastName, String pathPhoto, String company, String email, String github, String facebook, String twitter, String instagram) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.pathPhoto = pathPhoto;
+        this.company = company;
+        this.email = email;
+        this.github = github;
+        this.facebook = facebook;
+        this.twitter = twitter;
+        this.instagram = instagram;
+    }
+
     public Integer getContactId() {
         return contactId;
     }
