@@ -1,4 +1,4 @@
-package com.mobintum.visioncontacts;
+package com.mobintum.visioncontacts.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mobintum.visioncontacts.R;
+import com.mobintum.visioncontacts.models.Contact;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

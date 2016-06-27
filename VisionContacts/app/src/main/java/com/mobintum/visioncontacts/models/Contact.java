@@ -1,14 +1,14 @@
-package com.mobintum.visioncontacts;
+package com.mobintum.visioncontacts.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Created by Rick on 22/06/16.
+ * Created by Rick on 27/06/16.
  * email: ricardo.centeno@mobintum.com
  */
 public class Contact implements Serializable {
-    
+
     private String name;
     private String company;
     private String phone;
