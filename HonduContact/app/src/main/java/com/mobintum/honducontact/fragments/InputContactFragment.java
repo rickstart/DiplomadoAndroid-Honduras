@@ -36,6 +36,7 @@ import java.io.IOException;
 
 public class InputContactFragment extends Fragment implements View.OnClickListener {
 
+    private static final String ARG_PARAM_CONTACT = "paramContact";
     private EditText etFirstname, etLastname, etCompany, etNumber, etEmail, etGithub, etFacebook, etTwitter, etInstagram;
     private ImageView imgProfile;
     private Spinner spinTypeNumber;
@@ -43,7 +44,15 @@ public class InputContactFragment extends Fragment implements View.OnClickListen
     private String directory;
     private String fileName;
     private static final Integer TAKE_PHOTO_CODE = 1699;
+    private Contact contact;
 
+    public static InputContactFragment newInstance(Contact contact){
+        InputContactFragment fragment = new InputContactFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_PARAM_CONTACT, contact);
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +61,10 @@ public class InputContactFragment extends Fragment implements View.OnClickListen
         File newdir = new File(directory);
         if(!newdir.exists())
             newdir.mkdirs();
+
+        if(getArguments()!=null){
+            this.contact = (Contact) getArguments().getSerializable(ARG_PARAM_CONTACT);
+        }
     }
 
     public InputContactFragment() {
@@ -107,7 +120,7 @@ public class InputContactFragment extends Fragment implements View.OnClickListen
         return validate;
     }
 
-    private long save(){
+    private void save(){
         String firstname = etFirstname.getText().toString();
         String lastname = etLastname.getText().toString();
         String company = etCompany.getText().toString();
@@ -118,27 +131,79 @@ public class InputContactFragment extends Fragment implements View.OnClickListen
         String twitter = etTwitter.getText().toString();
         String instagram = etInstagram.getText().toString();
         TypeNumber typeNumber = (TypeNumber) spinTypeNumber.getSelectedItem();
-        Contact contact = new Contact(firstname,lastname,pathPhoto,company,email,github,facebook,twitter,instagram);
-        contact.setContactId((int) Contact.insert(getContext(),contact));
-        long id = ContactNumber.insert(getContext(), new ContactNumber(number, typeNumber.getTypeNumberId(),contact.getContactId()));
-        if(id != -1){
-            Snackbar.make(getView(),getString(R.string.save_success), Snackbar.LENGTH_SHORT).show();
+        if(contact!=null){
+            contact.setFirstName(firstname);
+            contact.setLastName(lastname);
+            contact.setCompany(company);
+            contact.setEmail(email);
+            contact.setGithub(github);
+            contact.setFacebook(facebook);
+            contact.setTwitter(twitter);
+            contact.setInstagram(instagram);
+            contact.setPathPhoto(pathPhoto);
+            Contact.updateContact(getContext(),contact);
+            ContactNumber contactNumber = ContactNumber.getContactNumbers(getContext(), contact.getContactId()).get(0);
+            contactNumber.setFk_typeNumberId(typeNumber.getTypeNumberId());
+            contactNumber.setNumber(number);
+            ContactNumber.updateContactNumber(getContext(),contactNumber);
+            Snackbar.make(getView(), getString(R.string.update_success), Snackbar.LENGTH_SHORT).show();
+        }else {
+            Contact contactSave = new Contact(firstname, lastname, pathPhoto, company, email, github, facebook, twitter, instagram);
+            contactSave.setContactId((int) Contact.insert(getContext(), contactSave));
+            long id = ContactNumber.insert(getContext(), new ContactNumber(number, typeNumber.getTypeNumberId(), contactSave.getContactId()));
+            if (id != -1) {
+                Snackbar.make(getView(), getString(R.string.save_success), Snackbar.LENGTH_SHORT).show();
 
-        }else
-            Snackbar.make(getView(),getString(R.string.failed_save), Snackbar.LENGTH_SHORT).show();
+            } else
+                Snackbar.make(getView(), getString(R.string.failed_save), Snackbar.LENGTH_SHORT).show();
 
+        }
         View v = getActivity().getCurrentFocus();
         if(v != null){
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(),0);
         }
         getActivity().getSupportFragmentManager().popBackStack();
-        return id;
     }
 
     private void loadData(){
-        ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item, TypeNumber.getTypeNumbers(getContext()));
-        spinTypeNumber.setAdapter(adapter);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, TypeNumber.getTypeNumbers(getContext()));
+        if(contact!=null){
+            etFirstname.setText(contact.getFirstName());
+            if(contact.getLastName()!=null)
+                etLastname.setText(contact.getLastName());
+
+            ContactNumber contactNumber = ContactNumber.getContactNumbers(getContext(),contact.getContactId()).get(0);
+            TypeNumber typeNumber = TypeNumber.getTypeNumberById(getContext(), contactNumber.getFk_typeNumberId());
+
+            etNumber.setText(contactNumber.getNumber());
+
+            if(contact.getCompany()!=null)
+                etCompany.setText(contact.getCompany());
+            if(contact.getEmail()!=null)
+                etEmail.setText(contact.getEmail());
+            if(contact.getGithub()!=null)
+                etGithub.setText(contact.getGithub());
+            if(contact.getFacebook()!=null)
+                etFacebook.setText(contact.getFacebook());
+            if(contact.getTwitter()!=null)
+                etTwitter.setText(contact.getTwitter());
+            if(contact.getInstagram()!=null)
+                etInstagram.setText(contact.getInstagram());
+
+            spinTypeNumber.setAdapter(adapter);
+            int posSpin = adapter.getPosition(typeNumber);
+            spinTypeNumber.setSelection(posSpin);
+            if(contact.getPathPhoto()!=null) {
+                pathPhoto = contact.getPathPhoto();
+                fileName = pathPhoto;
+                loadPhoto();
+            }
+
+        }else {
+
+            spinTypeNumber.setAdapter(adapter);
+        }
     }
 
 
@@ -161,17 +226,20 @@ public class InputContactFragment extends Fragment implements View.OnClickListen
         startActivityForResult(intent, TAKE_PHOTO_CODE);
     }
 
+    private void loadPhoto(){
+        File imgFile = new File(fileName);
+        if (imgFile.exists()){
+            Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            imgProfile.setImageBitmap(bitmap);
+            pathPhoto = fileName;
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if( requestCode == TAKE_PHOTO_CODE && resultCode == Activity.RESULT_OK){
-            File imgFile = new File(fileName);
-            if (imgFile.exists()){
-                Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                imgProfile.setImageBitmap(bitmap);
-                pathPhoto = fileName;
-            }
-
+            loadPhoto();
         }
     }
 }

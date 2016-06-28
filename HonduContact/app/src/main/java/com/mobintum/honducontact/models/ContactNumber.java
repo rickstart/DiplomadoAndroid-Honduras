@@ -94,4 +94,12 @@ public class ContactNumber {
         return contactNumbers;
 
     }
+
+    public static void updateContactNumber(Context context, ContactNumber contactNumber){
+        ContentValues cv = new ContentValues();
+        cv.put(NUMBER, contactNumber.getNumber());
+        cv.put(FK_TYPE_NUMBER_ID, contactNumber.getFk_typeNumberId());
+        cv.put(FK_CONTACT_ID, contactNumber.getFk_contactId());
+        DatabaseAdapter.getDB(context).update(TABLE_NAME, cv, CONTACT_NUMBER_ID +"="+contactNumber.getContactNumberId(),null);
+    }
 }

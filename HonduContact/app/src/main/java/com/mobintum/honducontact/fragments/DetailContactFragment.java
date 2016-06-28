@@ -2,6 +2,8 @@ package com.mobintum.honducontact.fragments;
 
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.renderscript.Type;
 import android.support.annotation.Nullable;
@@ -20,6 +22,8 @@ import com.mobintum.honducontact.R;
 import com.mobintum.honducontact.models.Contact;
 import com.mobintum.honducontact.models.ContactNumber;
 import com.mobintum.honducontact.models.TypeNumber;
+
+import java.io.File;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,6 +82,19 @@ public class DetailContactFragment extends Fragment {
                 return false;
             }
         });
+        MenuItem menuEdit = menu.findItem(R.id.menuEdit);
+
+        menuEdit.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content, InputContactFragment.newInstance(contact))
+                        .addToBackStack(null)
+                        .commit();
+                return false;
+            }
+        });
     }
 
     public DetailContactFragment() {
@@ -118,8 +135,18 @@ public class DetailContactFragment extends Fragment {
             txtTwitter.setText(contact.getTwitter());
         if(contact.getInstagram()!=null)
             txtInstagram.setText(contact.getInstagram());
+        if(contact.getPathPhoto()!=null)
+            loadPhoto(contact.getPathPhoto());
 
         return view;
+    }
+
+    private void loadPhoto( String fileName){
+        File imgFile = new File(fileName);
+        if (imgFile.exists()){
+            Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            imgProfile.setImageBitmap(bitmap);
+        }
     }
 
 }

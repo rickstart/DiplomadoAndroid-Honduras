@@ -190,4 +190,22 @@ public class Contact implements Serializable {
         int i = DatabaseAdapter.getDB(context).delete(TABLE_NAME,CONTACT_ID+"="+contactId,null);
         return i;
     }
+
+    public static void updateContact(Context context, Contact contact ){
+
+        ContentValues cv = new ContentValues();
+        cv.put(FIRST_NAME, contact.getFirstName());
+        cv.put(LAST_NAME, contact.getLastName());
+        cv.put(PATH_PHOTO, contact.getPathPhoto());
+        cv.put(COMPANY, contact.getCompany());
+        cv.put(EMAIL, contact.getEmail());
+        cv.put(GITHUB, contact.getGithub());
+        cv.put(FACEBOOK, contact.getFacebook());
+        cv.put(TWITTER, contact.getTwitter());
+        cv.put(INSTAGRAM, contact.getInstagram());
+
+        DatabaseAdapter.getDB(context).update(TABLE_NAME,cv, CONTACT_ID +"="+ contact.getContactId(),null);
+
+
+    }
 }
