@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HonduContact</string>
+    <string name="hello_blank_fragment">Hola blank fragment</string>
+    <string name="add_photo">Agregar Foto</string>
+    <string name="add_number">Agregar Número</string>
+    <string name="name">Nombre</string>
+    <string name="lastname">Apellidos</string>
+    <string name="company">Empresa</string>
+    <string name="email">Email</string>
+    <string name="github">Github</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="instagram">Instagram</string>
+    <string name="save">Guardar</string>
+    <string name="error_field">Campo Obligatorio</string>
+    <string name="save_success">Guardado Correctamente :)</string>
+    <string name="failed_save">Error al Guardar :(</string>
+    <string name="failed_take_photo">Error al guardar fotografía</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Borrar</string>
+    <string name="important">Importante</string>
+    <string name="confirmation_delete">¿ Estás seguro de borrar ?</string>
+    <string name="ok">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="update_success">Actualizado Correctamente :)</string>
+</resources>
