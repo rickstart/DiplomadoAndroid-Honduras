@@ -73,6 +73,19 @@ public class TypeNumber {
         return typeNumbers;
     }
 
+    public static TypeNumber getTypeNumberById(Context context, int typeNumberId){
+        TypeNumber typeNumber = null;
+        Cursor cursor = DatabaseAdapter.getDB(context).query(TABLE_NAME, null, TYPE_NUMBER_ID+"="+typeNumberId,null,null,null,null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+            String type = cursor.getString(cursor.getColumnIndexOrThrow(TYPE));
+            typeNumber = new TypeNumber(typeNumberId,type);
+            cursor.close();
+        }
+        return typeNumber;
+    }
+
     @Override
     public String toString() {
         return type;

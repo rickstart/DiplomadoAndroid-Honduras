@@ -34,17 +34,24 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class InputContactFragment extends Fragment {
+public class InputContactFragment extends Fragment implements View.OnClickListener {
 
     private EditText etFirstname, etLastname, etCompany, etNumber, etEmail, etGithub, etFacebook, etTwitter, etInstagram;
     private ImageView imgProfile;
     private Spinner spinTypeNumber;
     private String pathPhoto;
+    private String directory;
+    private String fileName;
+    private static final Integer TAKE_PHOTO_CODE = 1699;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/honduContacs/";
+        File newdir = new File(directory);
+        if(!newdir.exists())
+            newdir.mkdirs();
     }
 
     public InputContactFragment() {
@@ -67,8 +74,7 @@ public class InputContactFragment extends Fragment {
         etInstagram = (EditText) view.findViewById(R.id.etInstagram);
         imgProfile = (ImageView) view.findViewById(R.id.imgProfile);
         spinTypeNumber = (Spinner) view.findViewById(R.id.spinTypeNumber);
-
-
+        imgProfile.setOnClickListener(this);
         loadData();
         return view;
     }
@@ -128,7 +134,6 @@ public class InputContactFragment extends Fragment {
         }
         getActivity().getSupportFragmentManager().popBackStack();
         return id;
-
     }
 
     private void loadData(){
@@ -137,4 +142,36 @@ public class InputContactFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+
+        Long tsLong = System.currentTimeMillis()/1000;
+        fileName = directory+"contact_"+tsLong.toString()+".jpg";
+        File newFile = new File(fileName);
+        try{
+            newFile.createNewFile();
+        }catch (IOException e){
+            Snackbar.make(getView(),getString(R.string.failed_take_photo), Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+
+        Uri outputFileUri = Uri.fromFile(newFile);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,outputFileUri);
+        startActivityForResult(intent, TAKE_PHOTO_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if( requestCode == TAKE_PHOTO_CODE && resultCode == Activity.RESULT_OK){
+            File imgFile = new File(fileName);
+            if (imgFile.exists()){
+                Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                imgProfile.setImageBitmap(bitmap);
+                pathPhoto = fileName;
+            }
+
+        }
+    }
 }

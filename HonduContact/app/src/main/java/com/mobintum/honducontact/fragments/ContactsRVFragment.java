@@ -18,7 +18,7 @@ import com.mobintum.honducontact.models.Contact;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ContactsRVFragment extends Fragment implements View.OnClickListener{
+public class ContactsRVFragment extends Fragment implements View.OnClickListener, ContactRVAdapter.OnItemClickListener{
 
     private RecyclerView rvContacts;
     private FloatingActionButton fabAdd;
@@ -43,7 +43,7 @@ public class ContactsRVFragment extends Fragment implements View.OnClickListener
         fabAdd = (FloatingActionButton) view.findViewById(R.id.fabAdd);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         rvContacts.setLayoutManager(layoutManager);
-        ContactRVAdapter adapter = new ContactRVAdapter(Contact.getContacts(getContext()));
+        ContactRVAdapter adapter = new ContactRVAdapter(Contact.getContacts(getContext()),this);
         rvContacts.setAdapter(adapter);
         fabAdd.setOnClickListener(this);
         return view;
@@ -52,6 +52,15 @@ public class ContactsRVFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         mListener.addContact();
+    }
+
+    @Override
+    public void onItemClick(Contact contact) {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, DetailContactFragment.newIntance(contact))
+                .addToBackStack(null)
+                .commit();
     }
 
     public interface CallbackInterface{

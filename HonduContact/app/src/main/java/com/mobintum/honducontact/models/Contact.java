@@ -154,7 +154,7 @@ public class Contact implements Serializable {
         cv.put(LAST_NAME, contact.getLastName());
         cv.put(PATH_PHOTO, contact.getPathPhoto());
         cv.put(COMPANY, contact.getCompany());
-        cv.put(EMAIL, contact.getCompany());
+        cv.put(EMAIL, contact.getEmail());
         cv.put(GITHUB, contact.getGithub());
         cv.put(FACEBOOK, contact.getFacebook());
         cv.put(TWITTER, contact.getTwitter());

@@ -17,4 +17,5 @@
     <string name="error_field">Mandatory Field</string>
     <string name="save_success">Save Success :)</string>
     <string name="failed_save">Failed Save :(</string>
+    <string name="failed_take_photo">Failed to Storage Photo</string>
 </resources>

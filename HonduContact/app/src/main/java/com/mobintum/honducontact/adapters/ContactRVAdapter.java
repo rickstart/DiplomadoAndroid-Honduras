@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,11 +20,13 @@ import com.mobintum.honducontact.models.Contact;
  * Created by Rick on 27/06/16.
  * email: ricardo.centeno@mobintum.com
  */
-public class ContactRVAdapter  extends RecyclerView.Adapter<ContactRVAdapter.ViewHolder>{
+public class ContactRVAdapter  extends RecyclerView.Adapter<ContactRVAdapter.ViewHolder> {
     private ArrayList<Contact> contacts;
+    private OnItemClickListener mListener;
 
-    public ContactRVAdapter(ArrayList<Contact> contacts) {
+    public ContactRVAdapter(ArrayList<Contact> contacts, OnItemClickListener mListener) {
         this.contacts = contacts;
+        this.mListener = mListener;
     }
 
     @Override
@@ -34,7 +37,7 @@ public class ContactRVAdapter  extends RecyclerView.Adapter<ContactRVAdapter.Vie
 
     @Override
     public void onBindViewHolder(ContactRVAdapter.ViewHolder holder, int position) {
-        Contact contact = contacts.get(position);
+        final Contact contact = contacts.get(position);
         if(contact.getLastName()!=null)
             holder.txtName.setText(contact.getFirstName()+" "+contact.getLastName());
         else
@@ -50,6 +53,15 @@ public class ContactRVAdapter  extends RecyclerView.Adapter<ContactRVAdapter.Vie
                 holder.imgProfileThumb.setImageBitmap(bitmap);
             }
         }
+
+        holder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onItemClick(contact);
+            }
+        });
+
+
     }
 
     @Override
@@ -57,15 +69,25 @@ public class ContactRVAdapter  extends RecyclerView.Adapter<ContactRVAdapter.Vie
         return contacts.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgProfileThumb;
         TextView txtName;
         TextView txtCompany;
+        View itemView;
         public ViewHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
             imgProfileThumb = (ImageView) itemView.findViewById(R.id.imgProfileThumb);
             txtName = (TextView) itemView.findViewById(R.id.txtName);
             txtCompany = (TextView) itemView.findViewById(R.id.txtCompany);
         }
+
+        public void setOnClickListener(View.OnClickListener listener){
+            itemView.setOnClickListener(listener);
+        }
+    }
+
+    public interface OnItemClickListener{
+        public void onItemClick(Contact contact);
     }
 }
