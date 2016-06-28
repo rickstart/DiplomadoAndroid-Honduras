@@ -1,11 +1,18 @@
 package com.mobintum.honducontact.fragments;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +28,9 @@ import com.mobintum.honducontact.R;
 import com.mobintum.honducontact.models.Contact;
 import com.mobintum.honducontact.models.ContactNumber;
 import com.mobintum.honducontact.models.TypeNumber;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class InputContactFragment extends Fragment {
@@ -56,6 +66,7 @@ public class InputContactFragment extends Fragment {
         etInstagram = (EditText) view.findViewById(R.id.etInstagram);
         imgProfile = (ImageView) view.findViewById(R.id.imgProfile);
         spinTypeNumber = (Spinner) view.findViewById(R.id.spinTypeNumber);
+
 
         loadData();
         return view;
@@ -105,11 +116,12 @@ public class InputContactFragment extends Fragment {
         long id = ContactNumber.insert(getContext(), new ContactNumber(number, typeNumber.getTypeNumberId(),contact.getContactId()));
         if(id != -1){
             Snackbar.make(getView(),getString(R.string.save_success), Snackbar.LENGTH_SHORT).show();
-            return id;
-        }else {
+
+        }else
             Snackbar.make(getView(),getString(R.string.failed_save), Snackbar.LENGTH_SHORT).show();
-            return id;
-        }
+
+        getActivity().getSupportFragmentManager().popBackStack();
+        return id;
 
     }
 
@@ -117,4 +129,6 @@ public class InputContactFragment extends Fragment {
         ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item, TypeNumber.getTypeNumbers(getContext()));
         spinTypeNumber.setAdapter(adapter);
     }
+
+
 }
