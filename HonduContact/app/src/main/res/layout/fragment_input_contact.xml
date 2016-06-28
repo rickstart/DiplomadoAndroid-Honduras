@@ -5,62 +5,6 @@
     android:orientation="vertical"
     tools:context="com.mobintum.honducontact.fragments.InputContactFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".3"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".3">
-            <com.mobintum.honducontact.utilities.RoundedImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/img_profile"
-                android:scaleType="fitXY"
-                android:id="@+id/imgProfile"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_photo"
-                android:layout_centerInParent="true"
-                android:textColor="@color/colorPrimary"
-                android:id="@+id/txtAddPhoto"/>
-
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".7"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_medium">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/name"
-                android:inputType="text"
-                android:id="@+id/etFirstname"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/lastname"
-                android:inputType="text"
-                android:id="@+id/etLastname"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/company"
-                android:inputType="text"
-                android:id="@+id/etCompany"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -71,6 +15,59 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_medium"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".3">
+                    <com.mobintum.honducontact.utilities.RoundedImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/img_profile"
+                        android:scaleType="fitXY"
+                        android:id="@+id/imgProfile"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_photo"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/txtAddPhoto"/>
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".7"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/name"
+                        android:inputType="text"
+                        android:id="@+id/etFirstname"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/lastname"
+                        android:inputType="text"
+                        android:id="@+id/etLastname"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/company"
+                        android:inputType="text"
+                        android:id="@+id/etCompany"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,35 +89,35 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:drawableLeft="@drawable/ic_email"
                 android:id="@+id/etEmail" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/github"
+                android:hint="@string/github"
                 android:inputType="text"
                 android:drawableLeft="@drawable/ic_github"
                 android:id="@+id/etGithub"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/facebook"
+                android:hint="@string/facebook"
                 android:inputType="text"
                 android:drawableLeft="@drawable/ic_facebook"
                 android:id="@+id/etFacebook"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/twitter"
+                android:hint="@string/twitter"
                 android:inputType="text"
                 android:drawableLeft="@drawable/ic_twitter"
                 android:id="@+id/etTwitter"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/instagram"
+                android:hint="@string/instagram"
                 android:inputType="text"
                 android:drawableLeft="@drawable/ic_instagram"
                 android:id="@+id/etInstagram"/>

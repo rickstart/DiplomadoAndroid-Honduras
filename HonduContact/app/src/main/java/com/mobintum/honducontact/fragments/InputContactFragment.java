@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -120,6 +121,11 @@ public class InputContactFragment extends Fragment {
         }else
             Snackbar.make(getView(),getString(R.string.failed_save), Snackbar.LENGTH_SHORT).show();
 
+        View v = getActivity().getCurrentFocus();
+        if(v != null){
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+        }
         getActivity().getSupportFragmentManager().popBackStack();
         return id;
 
