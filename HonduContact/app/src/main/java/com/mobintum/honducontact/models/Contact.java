@@ -183,6 +183,11 @@ public class Contact implements Serializable {
         }
 
         return contacts;
+    }
 
+    public static int deleteContactById(Context context, int contactId){
+        int j = DatabaseAdapter.getDB(context).delete(ContactNumber.TABLE_NAME,ContactNumber.FK_CONTACT_ID+"="+contactId,null);
+        int i = DatabaseAdapter.getDB(context).delete(TABLE_NAME,CONTACT_ID+"="+contactId,null);
+        return i;
     }
 }
