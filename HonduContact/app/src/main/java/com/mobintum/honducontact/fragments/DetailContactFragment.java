@@ -1,11 +1,16 @@
 package com.mobintum.honducontact.fragments;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.renderscript.Type;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -37,9 +42,41 @@ public class DetailContactFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if(getArguments()!=null){
             this.contact = (Contact) getArguments().getSerializable(ARG_PARAM_CONTACT);
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_detail_contact,menu);
+        MenuItem menuDelete = menu.findItem(R.id.menuDelete);
+        menuDelete.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(getString(R.string.important))
+                        .setMessage(getString(R.string.confirmation_delete))
+                        .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .show();
+
+
+                return false;
+            }
+        });
     }
 
     public DetailContactFragment() {
