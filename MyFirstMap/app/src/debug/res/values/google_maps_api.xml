@@ -1,0 +1,19 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=12:7A:18:27:1D:C4:8C:41:7E:1B:D2:21:6E:6A:70:B4:B5:B8:86:76%3Bcom.mobintum.myfirstmap
+
+    You can also add your credentials to an existing key, using this line:
+    12:7A:18:27:1D:C4:8C:41:7E:1B:D2:21:6E:6A:70:B4:B5:B8:86:76;com.mobintum.myfirstmap
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBAIh20PRssSPp8WZ4j1wOURLon69abjQQ</string>
+</resources>
