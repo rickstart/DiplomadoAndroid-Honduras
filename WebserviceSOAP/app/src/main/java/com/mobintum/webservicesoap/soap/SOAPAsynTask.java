@@ -1,14 +1,13 @@
-package com.mobintum.webservicesoap;
+package com.mobintum.webservicesoap.soap;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
-import com.mobintum.webservicesoap.models.Nacionalidad;
+
 import org.ksoap2.serialization.SoapObject;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 
 /**
  * Created by Rick on 30/06/16.
@@ -53,7 +52,7 @@ public class SOAPAsynTask  extends AsyncTask<String, Void, InputStream> {
         request.addProperty(paramsName[1], params[1]);
 
         //request to server and get Soap Primitive response
-        return WebServiceCall.callWSThreadSoapPrimitive(URL, SOAP_ACTION+methodName, request);
+        return WebServiceCall.callWSThreadSoapPrimitive(URL, NAME_SPACE+methodName, request);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.mobintum.webservicesoap;
+package com.mobintum.webservicesoap.soap;
 
 import android.util.Log;
 import org.ksoap2.SoapEnvelope;

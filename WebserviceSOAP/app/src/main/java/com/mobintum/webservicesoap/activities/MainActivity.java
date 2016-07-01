@@ -1,8 +1,11 @@
-package com.mobintum.webservicesoap;
+package com.mobintum.webservicesoap.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.mobintum.webservicesoap.R;
+import com.mobintum.webservicesoap.soap.SOAPAsynTask;
 import com.mobintum.webservicesoap.models.Nacionalidad;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
